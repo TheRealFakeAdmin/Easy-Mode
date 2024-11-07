@@ -1,31 +1,31 @@
 {
 	"schemaVersion": 1,
-	"id": "modid",
+	"id": "easymode",
 	"version": "${version}",
-	"name": "Example mod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "Easy Mode",
+	"description": "This is the result of learning how to make a mod by making the game easy.",
 	"authors": [
-		"Me!"
+		"TheRealFakeAdmin"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/TheRealFakeAdmin/Easy-Mode"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/modid/icon.png",
+	"icon": "assets/easymode/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.example.ExampleMod"
+			"xyz.trfa.easymode.ExampleMod"
 		],
 		"client": [
-			"com.example.ExampleModClient"
+			"xyz.trfa.easymode.ExampleModClient"
 		]
 	},
 	"mixins": [
-		"modid.mixins.json",
+		"easymode.mixins.json",
 		{
-			"config": "modid.client.mixins.json",
+			"config": "easymode.client.mixins.json",
 			"environment": "client"
 		}
 	],

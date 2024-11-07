@@ -1,9 +1,9 @@
 {
 	"required": true,
-	"package": "com.example.mixin.client",
+	"package": "xyz.trfa.easymode.mixins",
 	"compatibilityLevel": "JAVA_21",
-	"client": [
-		"ExampleClientMixin"
+	"mixins": [
+		"ExampleMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

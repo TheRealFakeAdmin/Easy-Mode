@@ -1,4 +1,4 @@
-package com.example;
+package xyz.trfa.easymode;
 
 import net.fabricmc.api.ClientModInitializer;
 

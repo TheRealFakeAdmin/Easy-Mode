@@ -1,4 +1,4 @@
-package com.example.mixin;
+package xyz.trfa.easymode.mixins;
 
 import net.minecraft.server.MinecraftServer;
 import org.spongepowered.asm.mixin.Mixin;
