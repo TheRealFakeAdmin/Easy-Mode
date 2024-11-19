@@ -19,7 +19,8 @@
 			"xyz.trfa.easymode.EasyMode"
 		],
 		"client": [
-			"xyz.trfa.easymode.EasyModeClient"
+			"xyz.trfa.easymode.EasyModeClient",
+			"xyz.trfa.easymode.Keybindings"
 		],
 		"modmenu": [
 			"xyz.trfa.easymode.EasyModeModMenu"

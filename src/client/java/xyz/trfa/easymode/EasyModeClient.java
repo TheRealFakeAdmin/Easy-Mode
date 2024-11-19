@@ -3,9 +3,9 @@ package xyz.trfa.easymode;
 import net.fabricmc.api.ClientModInitializer;
 
 public class EasyModeClient implements ClientModInitializer {
+
 	@Override
 	public void onInitializeClient() {
-		// This entrypoint is suitable for setting up client-specific logic, such as rendering.
-		Keybindings.register();
+		// You can perform other client-specific initialization here if needed.
 	}
 }

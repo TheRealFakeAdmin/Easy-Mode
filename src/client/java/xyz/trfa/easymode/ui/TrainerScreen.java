@@ -2,38 +2,37 @@ package xyz.trfa.easymode.ui;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
-import xyz.trfa.easymode.config.TrainerConfig;
 
 public class TrainerScreen extends Screen {
 
-    protected TrainerScreen() {
-        super(Text.of("Trainer Menu"));
+    private final Screen parent;
+
+    public TrainerScreen(Screen parent) {
+        super(Text.of("Cheat Menu - Main"));
+        this.parent = parent;
     }
 
     @Override
     protected void init() {
-        // Add a button to toggle God Mode
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 4, 200, 20,
-                Text.of("Toggle God Mode: " + (TrainerConfig.isGodModeEnabled() ? "ON" : "OFF")),
-                button -> {
-                    TrainerConfig.toggleGodModeEnabled();
-                    button.setMessage(Text.of("Toggle God Mode: " + (TrainerConfig.isGodModeEnabled() ? "ON" : "OFF")));
-                }));
+        // Player Menu Button
+        this.addDrawableChild(ButtonWidget.builder(
+                Text.of("Player"),
+                button -> this.client.setScreen(new PlayerMenuScreen(this))
+        ).dimensions(this.width / 2 - 100, this.height / 4, 200, 20).build());
 
-        // Add a button to toggle Fly Mode
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 4 + 24, 200, 20,
-                Text.of("Toggle Fly Mode: " + (TrainerConfig.isFlyModeEnabled() ? "ON" : "OFF")),
-                button -> {
-                    TrainerConfig.toggleFlyModeEnabled();
-                    button.setMessage(Text.of("Toggle Fly Mode: " + (TrainerConfig.isFlyModeEnabled() ? "ON" : "OFF")));
-                }));
+        // World Menu Button
+        this.addDrawableChild(ButtonWidget.builder(
+                Text.of("World"),
+                button -> this.client.setScreen(new WorldMenuScreen(this))
+        ).dimensions(this.width / 2 - 100, this.height / 4 + 24, 200, 20).build());
 
-        // Add a close button
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 4 + 48, 200, 20,
-                Text.of("Close"), button -> this.close()));
+        // Close Menu Button
+        this.addDrawableChild(ButtonWidget.builder(
+                Text.of("Close"),
+                button -> this.client.setScreen(null)
+        ).dimensions(this.width / 2 - 100, this.height / 4 + 48, 200, 20).build());
     }
 
     @Override
