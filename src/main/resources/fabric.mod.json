@@ -16,10 +16,13 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"xyz.trfa.easymode.ExampleMod"
+			"xyz.trfa.easymode.EasyMode"
 		],
 		"client": [
-			"xyz.trfa.easymode.ExampleModClient"
+			"xyz.trfa.easymode.EasyModeClient"
+		],
+		"modmenu": [
+			"xyz.trfa.easymode.EasyModeModMenu"
 		]
 	},
 	"mixins": [
@@ -33,7 +36,8 @@
 		"fabricloader": ">=0.16.7",
 		"minecraft": "~1.21.1",
 		"java": ">=21",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"cloth-config": ">=15.0.140"
 	},
 	"suggests": {
 		"modmenu": "~11.0.3"

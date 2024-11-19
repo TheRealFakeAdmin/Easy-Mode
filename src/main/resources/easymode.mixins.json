@@ -3,7 +3,8 @@
 	"package": "xyz.trfa.easymode.mixins",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin"
+		"FlyModeMixin",
+		"GodModeMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
