@@ -1,5 +1,8 @@
 package xyz.trfa.easymode.config;
 
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.world.GameMode;
+
 public class TrainerConfig {
     private static boolean godModeEnabled = false;
     private static boolean flyModeEnabled = false;
@@ -36,4 +39,16 @@ public class TrainerConfig {
     public static void setWorldCheatsEnabled(boolean checked) {
         worldCheatsEnabled = checked;
     }
+
+    // Gamemode
+    private static Gamemode gamemode = Gamemode.SURVIVAL; // Default value
+
+    public static Gamemode getGamemode() {
+        return gamemode;
+    }
+
+    public static void setGamemode(Gamemode newGamemode) {
+        gamemode = newGamemode;
+    }
+
 }

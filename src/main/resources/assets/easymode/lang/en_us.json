@@ -9,5 +9,9 @@
   "gui.easymode.button.god_mode_enabled": "God Mode Enabled",
   "gui.easymode.button.god_mode_disabled": "God Mode Disabled",
   "gui.easymode.button.fly_mode_enabled": "Fly Mode Enabled",
-  "gui.easymode.button.fly_mode_enabled": "Fly Mode Disabled"
+  "gui.easymode.button.fly_mode_disabled": "Fly Mode Disabled",
+  "gui.easymode.category.general": "General",
+  "gui.easymode.dropdown.select_gamemode": "Gamemode",
+  "gui.easymode.checkbox.fly_mode": "Fly Mode",
+  "gui.easymode.tip.select_gamemode": "Choose the player's gamemode"
 }

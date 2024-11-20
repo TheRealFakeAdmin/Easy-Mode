@@ -1,14 +1,12 @@
 package xyz.trfa.easymode.ui.player;
 
-import net.minecraft.client.gui.DrawContext;
+import me.shedaniel.clothconfig2.api.ConfigBuilder;
+import me.shedaniel.clothconfig2.api.ConfigCategory;
+import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.gui.widget.CheckboxWidget;
 import net.minecraft.text.Text;
-import net.minecraft.client.font.TextRenderer;
-import net.minecraft.text.TranslatableTextContent;
 import xyz.trfa.easymode.config.TrainerConfig;
-import xyz.trfa.easymode.ui.world.WorldTrainerScreen;
+import xyz.trfa.easymode.config.Gamemode;
 
 public class PlayerTrainerScreen extends Screen {
 
@@ -21,47 +19,38 @@ public class PlayerTrainerScreen extends Screen {
 
     @Override
     protected void init() {
-        TextRenderer textRenderer = this.textRenderer;
+        ConfigBuilder builder = ConfigBuilder.create()
+                .setParentScreen(parent)
+                .setTitle(Text.translatable("gui.easymode.title.player_trainer"));
 
-        // Add God Mode Checkbox
-        this.addDrawableChild(CheckboxWidget.builder(
-                        Text.translatable("gui.easymode.button.god_mode"),
-                        textRenderer
-                ).pos(this.width / 2 - 100, this.height / 4)
-                .maxWidth(200)
-                .checked(TrainerConfig.isGodModeEnabled())
-                .callback((checkbox, checked) -> TrainerConfig.setGodModeEnabled(checked))
+        ConfigCategory general = builder.getOrCreateCategory(Text.translatable("gui.easymode.category.general"));
+
+        ConfigEntryBuilder entryBuilder = builder.entryBuilder();
+
+        // God Mode Checkbox
+        general.addEntry(entryBuilder
+                .startBooleanToggle(Text.translatable("gui.easymode.button.god_mode"), TrainerConfig.isGodModeEnabled())
+                .setSaveConsumer(TrainerConfig::setGodModeEnabled)
                 .build());
 
-        // Add Fly Mode Checkbox
-        this.addDrawableChild(CheckboxWidget.builder(
-                        Text.of("Fly Mode"),
-                        textRenderer
-                ).pos(this.width / 2 - 100, this.height / 4 + 24)
-                .maxWidth(200)
-                .checked(TrainerConfig.isFlyModeEnabled())
-                .callback((checkbox, checked) -> TrainerConfig.setFlyModeEnabled(checked))
+        // Fly Mode Checkbox
+        general.addEntry(entryBuilder
+                .startBooleanToggle(Text.translatable("gui.easymode.checkbox.fly_mode"), TrainerConfig.isFlyModeEnabled())
+                .setSaveConsumer(TrainerConfig::setFlyModeEnabled)
                 .build());
 
-        // Toggle Gamemode
-        this.addDrawableChild(ButtonWidget.builder(
-                Text.of("Toggle Gamemode"),
-                button -> {
-                    // Logic to open gamerules submenu
-                }
-        ).dimensions(this.width / 2 - 100, this.height / 4 + 24, 200, 20).build());
+        // Gamemode Dropdown
+        general.addEntry(entryBuilder
+                .startEnumSelector(Text.translatable("gui.easymode.dropdown.select_gamemode"), Gamemode.class, TrainerConfig.getGamemode())
+                .setSaveConsumer(TrainerConfig::setGamemode)
+                .setTooltip(Text.translatable("gui.easymode.tip.select_gamemode"))
+                .build());
 
-        // Back Button to return to the main menu
-        this.addDrawableChild(ButtonWidget.builder(
-                Text.of("Back"),
-                button -> this.client.setScreen(parent)
-        ).dimensions(this.width / 2 - 100, this.height / 4 + 72, 200, 20).build());
-    }
+        builder.setSavingRunnable(() -> {
+            // Save config changes here
+//            TrainerConfig.save();
+        });
 
-    @Override
-    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        this.renderBackground(context, mouseX, mouseY, delta); // Fixed parameters
-        super.render(context, mouseX, mouseY, delta);
-        context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 10, 0xFFFFFF);
+        this.client.setScreen(builder.build());
     }
 }
