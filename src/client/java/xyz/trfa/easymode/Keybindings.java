@@ -63,21 +63,21 @@ public class Keybindings implements ClientModInitializer {
         toggleGodModeKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.easymode.toggle_godmode",
                 InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_G,
+                GLFW.GLFW_KEY_G, // [G] Key
                 "category.easymode"
         ));
 
         toggleFlyModeKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.easymode.toggle_flymode",
                 InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_H,
+                GLFW.GLFW_KEY_H, // [H] Key
                 "category.easymode"
         ));
 
         openTrainerMenuKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.easymode.open_trainer_menu",
                 InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_R,
+                GLFW.GLFW_KEY_GRAVE_ACCENT, // [`] key
                 "category.easymode"
         ));
     }

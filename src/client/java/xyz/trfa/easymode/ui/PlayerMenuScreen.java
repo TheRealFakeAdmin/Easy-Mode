@@ -1,5 +1,6 @@
 package xyz.trfa.easymode.ui;
 
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.CheckboxWidget;
@@ -13,7 +14,7 @@ public class PlayerMenuScreen extends Screen {
     private final Screen parent;
 
     public PlayerMenuScreen(Screen parent) {
-        super(Text.of("Cheat Menu - Player"));
+        super(Text.of("Easy Mode Trainer - Player"));
         this.parent = parent;
     }
 
@@ -22,20 +23,24 @@ public class PlayerMenuScreen extends Screen {
         TextRenderer textRenderer = this.textRenderer;
 
         // Add God Mode Checkbox
-        this.addDrawableChild(new CheckboxWidget(
-                this.width / 2 - 100, this.height / 4, 200, 20,
-                Text.of("God Mode"), textRenderer,
-                TrainerConfig.isGodModeEnabled(),
-                checked -> TrainerConfig.toggleGodModeEnabled()
-        ));
+        this.addDrawableChild(CheckboxWidget.builder(
+                        Text.of("God Mode"),
+                        textRenderer
+                ).pos(this.width / 2 - 100, this.height / 4)
+                .maxWidth(200)
+                .checked(TrainerConfig.isGodModeEnabled())
+                .callback((checkbox, checked) -> TrainerConfig.setGodModeEnabled(checked))
+                .build());
 
         // Add Fly Mode Checkbox
-        this.addDrawableChild(new CheckboxWidget(
-                this.width / 2 - 100, this.height / 4 + 24, 200, 20,
-                Text.of("Fly Mode"), textRenderer,
-                TrainerConfig.isFlyModeEnabled(),
-                checked -> TrainerConfig.toggleFlyModeEnabled()
-        ));
+        this.addDrawableChild(CheckboxWidget.builder(
+                        Text.of("Fly Mode"),
+                        textRenderer
+                ).pos(this.width / 2 - 100, this.height / 4 + 24)
+                .maxWidth(200)
+                .checked(TrainerConfig.isFlyModeEnabled())
+                .callback((checkbox, checked) -> TrainerConfig.setFlyModeEnabled(checked))
+                .build());
 
         // Back Button to return to the main menu
         this.addDrawableChild(ButtonWidget.builder(
@@ -45,9 +50,9 @@ public class PlayerMenuScreen extends Screen {
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        this.renderBackground(matrices);
-        super.render(matrices, mouseX, mouseY, delta);
-        drawCenteredText(matrices, this.textRenderer, this.title, this.width / 2, 10, 0xFFFFFF);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        this.renderBackground(context, mouseX, mouseY, delta); // Fixed parameters
+        super.render(context, mouseX, mouseY, delta);
+        context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 10, 0xFFFFFF);
     }
 }

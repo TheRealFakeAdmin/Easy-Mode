@@ -1,5 +1,6 @@
 package xyz.trfa.easymode.ui;
 
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
@@ -10,7 +11,7 @@ public class TrainerScreen extends Screen {
     private final Screen parent;
 
     public TrainerScreen(Screen parent) {
-        super(Text.of("Cheat Menu - Main"));
+        super(Text.of("Easy Mode Trainer - Main"));
         this.parent = parent;
     }
 
@@ -36,9 +37,9 @@ public class TrainerScreen extends Screen {
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        this.renderBackground(matrices);
-        super.render(matrices, mouseX, mouseY, delta);
-        drawCenteredText(matrices, this.textRenderer, this.title, this.width / 2, 10, 0xFFFFFF);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        this.renderBackground(context, mouseX, mouseY, delta); // Fixed parameters
+        super.render(context, mouseX, mouseY, delta);
+        context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 10, 0xFFFFFF);
     }
 }

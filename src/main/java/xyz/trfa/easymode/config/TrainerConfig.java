@@ -3,6 +3,7 @@ package xyz.trfa.easymode.config;
 public class TrainerConfig {
     private static boolean godModeEnabled = false;
     private static boolean flyModeEnabled = false;
+    private static boolean worldCheatsEnabled = false;
 
     public static boolean isGodModeEnabled() {
         return godModeEnabled;
@@ -12,8 +13,8 @@ public class TrainerConfig {
         godModeEnabled = enabled;
     }
 
-    public static void toggleGodModeEnabled() {
-        godModeEnabled = !godModeEnabled;
+    public static boolean toggleGodModeEnabled() {
+        return godModeEnabled = !godModeEnabled;
     }
 
     public static boolean isFlyModeEnabled() {
@@ -24,7 +25,15 @@ public class TrainerConfig {
         flyModeEnabled = enabled;
     }
 
-    public static void toggleFlyModeEnabled() {
-        flyModeEnabled = !flyModeEnabled;
+    public static boolean toggleFlyModeEnabled() {
+        return flyModeEnabled = !flyModeEnabled;
+    }
+
+    public static boolean areWorldCheatsEnabled() {
+        return worldCheatsEnabled;
+    }
+
+    public static void setWorldCheatsEnabled(boolean checked) {
+        worldCheatsEnabled = checked;
     }
 }
