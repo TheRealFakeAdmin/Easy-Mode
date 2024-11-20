@@ -1,19 +1,18 @@
-package xyz.trfa.easymode.ui;
+package xyz.trfa.easymode.ui.world;
 
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.CheckboxWidget;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.client.font.TextRenderer;
 import xyz.trfa.easymode.config.TrainerConfig;
 
-public class WorldMenuScreen extends Screen {
+public class WorldTrainerScreen extends Screen {
 
     private final Screen parent;
 
-    public WorldMenuScreen(Screen parent) {
+    public WorldTrainerScreen(Screen parent) {
         super(Text.of("Easy Mode Trainer - World"));
         this.parent = parent;
     }

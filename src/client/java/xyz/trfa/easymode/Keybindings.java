@@ -7,6 +7,7 @@ import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableTextContent;
 import org.lwjgl.glfw.GLFW;
 import xyz.trfa.easymode.config.TrainerConfig;
 import xyz.trfa.easymode.ui.TrainerScreen;
@@ -30,8 +31,8 @@ public class Keybindings implements ClientModInitializer {
                 if (client.player != null) {
                     client.player.sendMessage(
                             TrainerConfig.isGodModeEnabled()
-                                    ? Text.of("God Mode Enabled")
-                                    : Text.of("God Mode Disabled"),
+                                    ? Text.translatable("gui.easymode.button.god_mode_enabled")
+                                    : Text.translatable("gui.easymode.button.god_mode_disabled"),
                             true
                     );
                 }
@@ -45,8 +46,8 @@ public class Keybindings implements ClientModInitializer {
                     client.player.sendAbilitiesUpdate();
                     client.player.sendMessage(
                             TrainerConfig.isFlyModeEnabled()
-                                    ? Text.of("Fly Mode Enabled")
-                                    : Text.of("Fly Mode Disabled"),
+                                    ? Text.translatable("gui.easymode.button.fly_mode_enabled")
+                                    : Text.translatable("gui.easymode.button.fly_mode_disabled"),
                             true
                     );
                 }
@@ -61,24 +62,24 @@ public class Keybindings implements ClientModInitializer {
     private void registerKeybindings() {
         // Register each keybinding here
         toggleGodModeKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                "key.easymode.toggle_godmode",
+                "key.easymode.name.toggle_god_mode",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_G, // [G] Key
-                "category.easymode"
+                "key.easymode.category.name"
         ));
 
         toggleFlyModeKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                "key.easymode.toggle_flymode",
+                "key.easymode.name.toggle_fly_mode",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_H, // [H] Key
-                "category.easymode"
+                "key.easymode.category.name"
         ));
 
         openTrainerMenuKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                "key.easymode.open_trainer_menu",
+                "gui.easymode.open_trainer_menu",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_GRAVE_ACCENT, // [`] key
-                "category.easymode"
+                "key.easymode.category.name"
         ));
     }
 }

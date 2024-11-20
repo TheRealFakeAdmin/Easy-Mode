@@ -1,20 +1,21 @@
-package xyz.trfa.easymode.ui;
+package xyz.trfa.easymode.ui.player;
 
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.CheckboxWidget;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.client.font.TextRenderer;
+import net.minecraft.text.TranslatableTextContent;
 import xyz.trfa.easymode.config.TrainerConfig;
+import xyz.trfa.easymode.ui.world.WorldTrainerScreen;
 
-public class PlayerMenuScreen extends Screen {
+public class PlayerTrainerScreen extends Screen {
 
     private final Screen parent;
 
-    public PlayerMenuScreen(Screen parent) {
-        super(Text.of("Easy Mode Trainer - Player"));
+    public PlayerTrainerScreen(Screen parent) {
+        super(Text.translatable("gui.easymode.title.player_trainer"));
         this.parent = parent;
     }
 
@@ -24,7 +25,7 @@ public class PlayerMenuScreen extends Screen {
 
         // Add God Mode Checkbox
         this.addDrawableChild(CheckboxWidget.builder(
-                        Text.of("God Mode"),
+                        Text.translatable("gui.easymode.button.god_mode"),
                         textRenderer
                 ).pos(this.width / 2 - 100, this.height / 4)
                 .maxWidth(200)
@@ -41,6 +42,14 @@ public class PlayerMenuScreen extends Screen {
                 .checked(TrainerConfig.isFlyModeEnabled())
                 .callback((checkbox, checked) -> TrainerConfig.setFlyModeEnabled(checked))
                 .build());
+
+        // Toggle Gamemode
+        this.addDrawableChild(ButtonWidget.builder(
+                Text.of("Toggle Gamemode"),
+                button -> {
+                    // Logic to open gamerules submenu
+                }
+        ).dimensions(this.width / 2 - 100, this.height / 4 + 24, 200, 20).build());
 
         // Back Button to return to the main menu
         this.addDrawableChild(ButtonWidget.builder(
