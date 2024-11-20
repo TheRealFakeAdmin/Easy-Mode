@@ -5,6 +5,7 @@ import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
+import net.minecraft.world.GameMode;
 import xyz.trfa.easymode.config.TrainerConfig;
 import xyz.trfa.easymode.config.Gamemode;
 
@@ -41,7 +42,7 @@ public class PlayerTrainerScreen extends Screen {
 
         // Gamemode Dropdown
         general.addEntry(entryBuilder
-                .startEnumSelector(Text.translatable("gui.easymode.dropdown.select_gamemode"), Gamemode.class, TrainerConfig.getGamemode())
+                .startEnumSelector(Text.translatable("gui.easymode.dropdown.select_gamemode"), GameMode.class, TrainerConfig.getGamemode())
                 .setSaveConsumer(TrainerConfig::setGamemode)
                 .setTooltip(Text.translatable("gui.easymode.tip.select_gamemode"))
                 .build());

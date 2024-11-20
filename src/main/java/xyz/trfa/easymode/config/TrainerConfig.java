@@ -22,7 +22,7 @@ public class TrainerConfig {
 
 
     // God Mode
-    private static boolean godModeEnabled = false;
+    private boolean godModeEnabled = false;
 
     public static boolean isGodModeEnabled() {
         return getInstance().godModeEnabled;
@@ -41,7 +41,7 @@ public class TrainerConfig {
 
 
     // Fly Mode
-    private static boolean flyModeEnabled = false;
+    private boolean flyModeEnabled = false;
 
     public static boolean isFlyModeEnabled() {
         return getInstance().flyModeEnabled;
@@ -74,14 +74,14 @@ public class TrainerConfig {
         player.changeGameMode(gameMode);
     }
 
-    private static Gamemode gamemode = Gamemode.SURVIVAL; // Default value
+    private static GameMode gamemode = GameMode.SURVIVAL; // Default value
 
-    public static Gamemode getGamemode() {
-        return getInstance().gamemode;
+    public static GameMode getGamemode() {
+        return gamemode;
     }
 
-    public static void setGamemode(Gamemode newGamemode) {
-        getInstance().gamemode = newGamemode;
+    public static void setGamemode(GameMode newGamemode) {
+        gamemode = newGamemode;
     }
 
 
